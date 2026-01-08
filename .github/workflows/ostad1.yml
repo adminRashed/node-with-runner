@@ -14,19 +14,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Check Node & npm
-        run: |
-          which node
-          node -v
-          npm -v
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
       - name: Install Dependencies
         run: npm install
-
-      - name: Run Tests (optional)
-        run: |
-          echo "No test configured"
-          # npm test
 
   deploy:
     runs-on: self-hosted
@@ -36,17 +30,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
       - name: Install Dependencies
         run: npm install
 
-      - name: Build (optional)
-        run: |
-          echo "No build step configured"
-          # npm run build
-
-      - name: Deploy using PM2
+      - name: Deploy App
         run: |
           pm2 restart app || pm2 start app.js --name="app"
-
-      
-            
