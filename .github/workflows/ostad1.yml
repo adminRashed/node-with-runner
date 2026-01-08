@@ -12,3 +12,7 @@ jobs:
         steps:
             - name: install node
               run: sudo apt install nginx -y
+            - name: checkout Repo
+              uses: actions/checkout@v2
+            - name: Node install
+              uses: actions/setup-node@v6
