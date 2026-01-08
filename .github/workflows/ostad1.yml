@@ -15,9 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+        run: sudo apt-get install -y
 
       - name: Install Dependencies
         run: npm install
