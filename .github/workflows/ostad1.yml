@@ -28,12 +28,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        run: sudo apt-get install -y
+      - name: install nginx
+        run: sudo apt install nginx -y
+
+      - name: install nginx1
+        run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+      - name: Setup NVM
+        run: nvm install node -y
+      - name: Setup 1
+        run: sudo apt install libatomic1
 
 
       - name: Install Dependencies
         run: npm install
+      - name: Setup NVM
+        run: nvm start
+
 
       - name: Deploy App
         run: |
