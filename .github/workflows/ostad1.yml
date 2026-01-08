@@ -6,7 +6,7 @@ on:
             - main
 
 jobs:
-    test:
+    setu-node:
         runs-on: ubuntu-letest
 
         steps:
