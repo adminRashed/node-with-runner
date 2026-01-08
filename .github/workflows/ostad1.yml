@@ -14,11 +14,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        run: sudo apt install -y
+      - name: Check Node & npm
+        run: |
+          which node
+          node -v
+          npm -v
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Run Tests (optional)
+        run: |
+          echo "No test configured"
+          # npm test
 
   deploy:
     runs-on: self-hosted
@@ -28,20 +36,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: install nginx
-        run: sudo apt install nginx -y
-
-      - name: install nginx1
-        run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-
-      - name: Setup NVM
-        run: nvm install node -y
-      - name: Setup 1
-        run: sudo apt install libatomic1
-
-
       - name: Install Dependencies
         run: npm install
-      - name: Setup NVM
-        run: nvm start
+
+      - name: Build (optional)
+        run: |
+          echo "No build step configured"
+          # npm run build
+
+      - name: Deploy using PM2
+        run: |
+          pm2 restart app || pm2 start app.js --name="app"
 
