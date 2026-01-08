@@ -6,22 +6,35 @@ on:
             - main
 
 jobs:
-    
-    Test:
+
+    test:
         runs-on: self-hosted
 
         steps:
             - name: checkout Repo
               uses: actions/checkout@v2
+
             - name: Node install
               uses: actions/setup-node@v6
-            - name: Start the process
-              run: pm2 start "npm run dev"
+
+            - name: Install dependencies
+              run: npm install
+        
             
 
-    Deploy:
+    deploy:
         runs-on: self-hosted
-        needs: Test
+        needs: test
 
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Install Dependencies
+              run: npm install
+
+            - name: Deploy App
+              run: |
+                pm2 restart app || pm2 start app.js --name="app"
       
             
