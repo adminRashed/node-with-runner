@@ -1,1 +1,14 @@
+name: Node
 
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    test:
+        runs-on: ubuntu-letest
+
+        steps:
+            - name: install node
+              run: sudo apt install nginx -y
