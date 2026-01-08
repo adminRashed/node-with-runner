@@ -7,7 +7,7 @@ on:
 
 jobs:
     setu-node:
-        runs-on: ubuntu-letest
+        runs-on: self-hosted
 
         steps:
             - name: install node
